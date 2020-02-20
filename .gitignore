@@ -4,3 +4,4 @@
 /microblog/app/__pycache__/
 /microblog/__pycache__/
 /microblog/flask_session/
+blackjack/flask_session/
