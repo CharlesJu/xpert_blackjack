@@ -88,42 +88,41 @@ def gamestart(username):
     session["myDeck"] = Deck()
     session["myhand"] = list()
     session["dealerhand"] = list()
-    
-    card1 = myDeck.dealcard()
-    card2 = myDeck.dealcard()
-    card3 = myDeck.dealcard()
-    card4 = myDeck.dealcard()
+
+    card1 = session["myDeck"].dealcard()
+    card2 = session["myDeck"].dealcard()
+    card3 = session["myDeck"].dealcard()
+    card4 = session["myDeck"].dealcard()
 
     if card1.get_value() + card3.get_value() == 21:
-        won = True
+        session["won"] = True
 
-    myhand.append(card1)
-    dealerhand.append(card2)
-    myhand.append(card3)
-    dealerhand.append(card4)
+    session["myhand"].append(card1)
+    session["dealerhand"].append(card2)
+    session["myhand"].append(card3)
+    session["dealerhand"].append(card4)
 
-    return render_template('gamestart.html', user = user, myhand = myhand, dealerhand = dealerhand, deck=myDeck, won = won, lost = lost)
+    return render_template('gamestart.html', user = user, myhand = session["myhand"], dealerhand = session["dealerhand"], deck=session["myDeck"], won = session["won"], lost = session["lost"])
 
 @app.route('/hit/<username>')
 @login_required
 def hit(username):
     user = User.query.filter_by(username=username).first_or_404()
-    myhand = request.args.get('myhand', type=list)
-    dealerhand = request.args.get('dealerhand', type=list)
-    myDeck = request.args.get('mydeck', Deck())
-    won = request.args.get('won', type=bool)
-    lost = request.args.get('lost', type=bool)
 
-    nextCard = myDeck.dealcard()
-    nextCard.get_value()
-    myhand.append(nextCard)
+    nextCard = session["myDeck"].dealcard()
+    session["myhand"].append(nextCard)
 
-    score = 0
-    for card in myhand:
-        score = score + 0
+    session["score"] = 0
+    for card in session["myhand"]:
+        session["score"] = session["score"] + nextCard.get_value()
+
+    if session["score"] == 21:
+        session["won"] = True
+    elif session["score"] > 21:
+        session["lost"] = True
 
 
-    return render_template('hit.html', user = user, myhand = myhand, dealerhand = dealerhand, deck=myDeck, won = won, lost = lost)
+    return render_template('hit.html', user = user, myhand = session["myhand"], dealerhand = session["dealerhand"], deck=session["myDeck"], won = session["won"], lost = session["lost"])
 
 
 @app.route('/stand/<username>')
