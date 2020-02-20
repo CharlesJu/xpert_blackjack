@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>User: {{ current_user.username }} </h1>
+	<hr>
+	<p>
+		{% if won == False and lost == False %}
+		Cards in myhand: 
+		{% for card in myhand %} 	
+		<p>	{{ card }}</p>
+		{% endfor %}
+		Cards in dealer's hand: 
+		<p> {{ dealerhand[0] }} </p>
+		<p> Hidden Card </p>
+		<a href="{{ url_for('hit', username=current_user.username, myhand = myhand, dealerhand = dealerhand, deck=myDeck, won = won, lost = lost) }}">Hit Me</a>
+		<a href="{{ url_for('stand', username=current_user.username, myhand = myhand, dealerhand = dealerhand, deck=myDeck, won = won, lost = lost) }}">Stand</a>
+
+		{% elif won == True and lost == False%}
+		Cards in hand: 
+		{% for card in myhand %} 	
+		<p>	{{ card }}</p>
+		{% endfor %}
+		Cards in dealer's hand: 
+		<p> {{ dealerhand[0] }} </p>
+		<p> Hidden Card </p>
+		<p> You Won! You got 21 </p>
+
+		{% elif lost == True and won == False %}
+		Cards in hand: 
+		{% for card in myhand %} 	
+		<p>	{{ card }}</p>
+		{% endfor %}
+		Cards in dealer's hand: 
+		<p> {{ dealerhand[0] }} </p>
+		<p> Hidden Card </p>
+		<p> You lost, you got over 21 :( </p>
+
+		{% endif %}
+	</p>
+	
+
+{% endblock %}
