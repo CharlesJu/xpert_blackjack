@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
+	    <h1>hi, {{ current_user.username }}! Ready to play?</h1>
+	    <a href = "{{ url_for('gamestart', username=current_user.username) }}">Start Game</a>
+{% endblock %}
