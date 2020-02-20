@@ -1,3 +1,6 @@
-/microblog/venv
-/microblog/mypython
-/microblog/migrations
+/microblog/venv/
+/microblog/mypython/
+/microblog/migrations/
+/microblog/app/__pycache__/
+/microblog/__pycache__/
+/microblog/flask_session/
