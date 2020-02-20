@@ -5,34 +5,35 @@
 	<hr>
 	<p>
 		{% if won == False %}
-		Cards in my hand: 
-		{% for card in myhand %}
-		<p>
-			{{ card }}
+			Cards in my hand: 
+			{% for card in myhand %}
+			<p>
+				{{ card }}
 
-		</p>
-		{% endfor %}
-		Cards in dealer's hand: 
-		<p> {{ dealerhand[0] }} </p>
-		<p> Hidden Card </p>
+			</p>
+			{% endfor %}
+			Cards in dealer's hand: 
+			<p> {{ dealerhand[0] }} </p>
+			<p> Hidden Card </p>
 
-		<a href="{{ url_for('hit', username=current_user.username, myhand = myhand, dealerhand = dealerhand, deck=myDeck, won = won, lost = lost) }}">Hit Me</a>
-		<a href="{{ url_for('stand', username=current_user.username, myhand = myhand, dealerhand = dealerhand, deck=myDeck, won = won, lost = lost) }}">Stand</a>
-		
-		{% else %}
-		Cards in my hand: 
-		{% for card in myhand %}
-		<p>
-			{{ card }}
+			<a href="{{ url_for('hit', username=current_user.username) }}">Hit Me</a>
+			
+			<a href="{{ url_for('stand', username=current_user.username) }}">Stand</a>
 
-		</p>
-		{% endfor %}
-		Cards in dealer's hand: 
-		<p> {{ dealerhand[0] }} </p>
-		<p> Hidden Card </p>
-		<p>
-			You Won! You got 21	
-		</p>
+			{% else %}
+			Cards in my hand: 
+			{% for card in myhand %}
+			<p>
+				{{ card }}
+
+			</p>
+			{% endfor %}
+			Cards in dealer's hand: 
+			<p> {{ dealerhand[0] }} </p>
+			<p> Hidden Card </p>
+			<p>
+				You Won! You got 21	
+			</p>
 		{% endif %}
 	</p>
 	
