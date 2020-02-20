@@ -4,7 +4,7 @@ from app import db
 from app import login
 from flask_login import UserMixin
 import random
-
+#test
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
