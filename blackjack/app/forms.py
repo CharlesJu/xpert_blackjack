@@ -6,7 +6,7 @@ from app.models import User
 
 class LoginForm(FlaskForm):
 	"""
-    Web form class for login form built off a FlaskForm
+	Web form class for login form built off a FlaskForm
 
 	Form Fields
 	----------
@@ -18,12 +18,12 @@ class LoginForm(FlaskForm):
 		box where user checks if they want 
 	submit : Submit Field
 		button user uses to attempt to sign in
-    """
-	
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
+	"""
+
+	username = StringField('Username', validators=[DataRequired()])
+	password = PasswordField('Password', validators=[DataRequired()])
+	remember_me = BooleanField('Remember Me')
+	submit = SubmitField('Sign In')
 
 
 class RegistrationForm(FlaskForm):
