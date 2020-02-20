@@ -6,7 +6,7 @@ from app import app, db
 from app.forms import LoginForm, RegistrationForm
 from app.models import User, Card, Deck
 
-
+# Test
 @app.route('/')
 @app.route('/index')
 @login_required
