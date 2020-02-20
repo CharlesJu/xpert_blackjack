@@ -1,12 +1,34 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>User: {{ user.username }} </h1>
-	<hr>
-	<p>
-	Cards in hand: 
-	{% for card in hand %} 
-		{{ card }}
-	</p>
+<h1>User: {{ current_user.username }} </h1>
+<hr>
+<p>
+
+	{% if won == True and lost == False %}
+	Cards in hand:
+	{% for card in myhand %}
+	<p> {{ card }}</p>
 	{% endfor %}
+	Cards in dealer's hand:
+	{% for card in dealerhand %}
+	<p> {{ card }}</p>
+	{% endfor %}
+	<p> You Won! </p>
+
+	{% elif lost == True and won == False %}
+	Cards in hand:
+	{% for card in myhand %}
+	<p> {{ card }}</p>
+	{% endfor %}
+	Cards in dealer's hand:
+	{% for card in dealerhand %}
+	<p> {{ card }}</p>
+	{% endfor %}
+	<p> You lost to the dealer :( </p>
+
+	{% endif %}
+</p>
+
+
 {% endblock %}
