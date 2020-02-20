@@ -7,3 +7,5 @@
 blackjack/flask_session/
 
 blackjack/app/__pycache__/
+
+blackjack/__pycache__/

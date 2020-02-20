@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
         {% if title %}
         <title>{{ title }} - microblog</title>
         {% else %}
@@ -7,18 +8,22 @@
         {% endif %}
     </head>
     <body>
-        <div>
-            Microblog:
-            <a href="{{ url_for('index') }}">Home</a>
-            {% if current_user.is_anonymous %}
-            <a href="{{ url_for('login') }}">Login</a>
-            {% else %}
-            <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
-            <a href="{{ url_for('blackjack', username=current_user.username) }}">Blackjack</a>
-            {% endif %}
+        <div class="header">
+          <h1>Welcome</h1>
+          <p>Do you want to play with me?<p>
+          <div>
+            <ul id="nav">
+              <li class="nav_link"><a href="{{ url_for('index') }}">Home</a></li>
+              {% if current_user.is_anonymous %}
+              <li class="nav_link"><a href="{{ url_for('login') }}">Login</a></li>
+              {% else %}
+              <li class="nav_link"><a href="{{ url_for('user', username=current_user.username) }}">Profile</a></li>
+              <li class="nav_link"><a href="{{ url_for('logout') }}">Logout</a></li>
+              <li class="nav_link"><a href="{{ url_for('blackjack', username=current_user.username) }}">Blackjack</a></li>
+              {% endif %}
+            </ul>
+          </div>
         </div>
-        <hr>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
